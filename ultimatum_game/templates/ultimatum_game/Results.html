@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Results
+{% endblock %}
+
+{% block content %}
+<h4>
+    Round number {{round_number}} out of {{Constants.num_rounds}}
+</h4>
+<p>
+
+    {% if player.id_in_group == 1 %}
+    {% if accepted %}
+    The responder decided to accept your offer
+    <br>
+    You keep <strong>{{ group.kept }}</strong> for yourself. The responder gets <strong>{{ offer }}</strong>.
+    {% else %}
+    The responder decided to decline your offer. None will get any gil
+    {% endif %}
+    {% else %}
+    {% if accepted %}
+    You decided to accept the offer.
+    <br>
+    You get <strong>{{ offer }}</strong> for yourself. The proposer gets <strong>{{ group.kept }}</strong>.
+    {% else %}
+    You decided to decline the offer. None will get any gil
+    {% endif %}
+    {% endif %}
+
+    {% next_button %}
+</p>
+{% include Constants.instructions_template %}
+{% endblock %}

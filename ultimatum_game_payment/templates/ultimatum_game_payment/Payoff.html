@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Done!{% endblock %}
+
+{% block content %}
+    <p>
+        Thank you very much for participating in the study!
+        <br>
+        Your final payoff is {{ payoff }}. It will be traded / mailed to you in-game.
+        <br>
+        Best of luck in your future adventures!
+    </p>
+
+{% endblock %}

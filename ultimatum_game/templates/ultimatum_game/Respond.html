@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Respond to the offer{% endblock %}
+
+{% block content %}
+    <h4>
+        Round number {{round_number}} out of {{Constants.num_rounds}}
+    </h4>
+    <p>
+        You are the <strong>responder</strong>.
+        <br>
+        Please choose whether to accept the proposal:
+        <br>
+        Accepting means you will get {{ responder_gil }} and the other player will get {{ proposer_gil }}.
+        <br>
+        Declining means no one will get any gil.
+    </p>
+
+
+    <p><b>Do you wish to accept the offer?</b></p>
+    <div>
+        <button name="offer_accepted" value="True" class="btn btn-primary btn-large">Yes</button>
+        <button name="offer_accepted" value="False" class="btn btn-primary btn-large">No</button>
+    </div>
+    <br>
+    {% include Constants.instructions_template %}
+
+{% endblock %}
