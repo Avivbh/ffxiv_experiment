@@ -11,7 +11,8 @@ class Payoff(Page):
 
     def vars_for_template(self):
         return {
-            'payoff': self.participant.payoff
+            'rounds_payoff': self.participant.payoff,
+            'total_payoff': self.participant.payoff + self.session.config['participation_fee']
         }
 
 page_sequence = [

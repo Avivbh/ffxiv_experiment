@@ -6,12 +6,10 @@ import random
 
 
 doc = """
-One player decides how to divide a certain amount between himself and the other
-player.
-
-See: Kahneman, Daniel, Jack L. Knetsch, and Richard H. Thaler. "Fairness
-and the assumptions of economics." Journal of business (1986):
-S285-S300.
+One player (the proposer) decides how to divide a certain amount between himself and the other
+player. The other player (the responder) decides whether to accept or reject the offer.
+Accept: amount is divided according to the offer.
+Reject: No one gets anything.
 
 """
 
@@ -19,7 +17,7 @@ S285-S300.
 class Constants(BaseConstants):
     name_in_url = 'ffxiv experiment'
     players_per_group = 2
-    num_rounds = 2
+    num_rounds = 10
 
     instructions_template = 'ultimatum_game/Instructions.html'
 

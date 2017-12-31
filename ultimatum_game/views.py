@@ -49,7 +49,7 @@ class Respond(Page):
 
 class ResponseWaitPage(WaitPage):
     def vars_for_template(self):
-        body_text = "Please wait while the the other player decide whether to accept your offer"
+        body_text = "Please wait while the other player decides whether to accept your offer"
         return {'body_text': body_text}
 
     def is_displayed(self):
