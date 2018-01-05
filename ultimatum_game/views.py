@@ -8,8 +8,16 @@ class Introduction(Page):
 
 
 class Offer(Page):
+    """
+    If the user timeout on this page he will automatically offer 5000
+    """
     form_model = models.Group
     form_fields = ['kept']
+
+    timeout_submission = {'kept': 5000}
+
+    def get_timeout_seconds(self):
+        return self.session.config['offer_and_respond_pages_times']
 
     def is_displayed(self):
         return self.player.id_in_group == 1
@@ -18,6 +26,17 @@ class Offer(Page):
         return {
             'round_number': self.round_number
         }
+
+    def before_next_page(self):
+        """
+        In case of timeout: Set default values and mark if it was by timeout
+        """
+        if self.timeout_happened:
+            for field_name, value in self.timeout_submission.items():
+                setattr(self.player, field_name, value)
+            self.group.offered_by_timeout = True
+        else:
+            self.group.offered_by_timeout = False
 
 
 class OfferWaitPage(WaitPage):
@@ -33,8 +52,16 @@ class OfferWaitPage(WaitPage):
 
 
 class Respond(Page):
+    """
+    If the user timeout on this page he will automatically accept.
+    """
     form_model = models.Group
     form_fields = ['offer_accepted']
+
+    timeout_submission = {'offer_accepted': True}
+
+    def get_timeout_seconds(self):
+        return self.session.config['offer_and_respond_pages_times']
 
     def is_displayed(self):
         return self.player.id_in_group == 2
@@ -45,6 +72,18 @@ class Respond(Page):
             'proposer_gil': self.group.kept,
             'round_number': self.round_number
         }
+
+    def before_next_page(self):
+        """
+        In case of timeout: Set default values and mark if it was by timeout
+        """
+        if self.timeout_happened:
+            for field_name, value in self.timeout_submission.items():
+                setattr(self.player, field_name, value)
+
+            self.group.accepted_by_timeout = True
+        else:
+            self.group.accepted_by_timeout = False
 
 
 class ResponseWaitPage(WaitPage):
@@ -57,6 +96,9 @@ class ResponseWaitPage(WaitPage):
 
 
 class Results(Page):
+    def get_timeout_seconds(self):
+        return self.session.config['results_page_timeout']
+
     def before_next_page(self):
         self.group.set_payoffs()
 
@@ -67,7 +109,8 @@ class Results(Page):
         return {
             'offer': Constants.endowment - self.group.kept,
             'accepted': self.group.offer_accepted,
-            'round_number': self.round_number
+            'round_number': self.round_number,
+            'accepted_by_timeout': self.group.accepted_by_timeout,
         }
 
 

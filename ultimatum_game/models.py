@@ -36,6 +36,8 @@ class Group(BaseGroup):
         min=0, max=Constants.endowment,
     )
     offer_accepted = models.BooleanField()
+    accepted_by_timeout = models.BooleanField()
+    offered_by_timeout = models.BooleanField()
 
     def set_payoffs(self):
         proposer = self.get_player_by_role('proposer')

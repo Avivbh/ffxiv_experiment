@@ -253,12 +253,18 @@ SESSION_CONFIGS = [
         'display_name': "Ultimatum Game",
         'num_demo_participants': 2,
         'app_sequence': ['ultimatum_game_intro', 'ultimatum_game', 'ultimatum_game_payment'],
+        'offer_and_respond_pages_times': 120,
+        'results_page_timeout': 60,
+        'instructions_page_timeout': 480,
+        'questions_page_timeout': 480,
     },
     {
         'name': 'ultimatum_game_intro',
         'display_name': "Ultimatum Game Intro",
         'num_demo_participants': 1,
         'app_sequence': ['ultimatum_game_intro'],
+        'instructions_page_timeout': 480,
+        'questions_page_timeout': 480,
     },
 
 ]
