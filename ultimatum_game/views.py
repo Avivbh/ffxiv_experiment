@@ -42,7 +42,7 @@ class Offer(Page):
 class OfferWaitPage(WaitPage):
     def vars_for_template(self):
         if self.player.id_in_group == 2:
-            body_text = "You are the responder. Waiting for proposer to give offer."
+            body_text = "You are the responder. Waiting for proposer to make an offer."
         else:
             body_text = 'Please wait'
         return {
