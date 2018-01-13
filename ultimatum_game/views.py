@@ -85,6 +85,9 @@ class Respond(Page):
         else:
             self.group.accepted_by_timeout = False
 
+        # set the payoffs now that we have the response
+        self.group.set_payoffs()
+
 
 class ResponseWaitPage(WaitPage):
     def vars_for_template(self):
@@ -98,9 +101,6 @@ class ResponseWaitPage(WaitPage):
 class Results(Page):
     def get_timeout_seconds(self):
         return self.session.config['results_page_timeout']
-
-    def before_next_page(self):
-        self.group.set_payoffs()
 
     def offer(self):
         return Constants.endowment - self.group.kept

@@ -17,7 +17,7 @@ Reject: No one gets anything.
 class Constants(BaseConstants):
     name_in_url = 'ffxiv experiment'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 4
 
     instructions_template = 'ultimatum_game/Instructions.html'
 
@@ -55,7 +55,6 @@ class Player(BasePlayer):
 
     def role(self):
 
-        # TODO change the way this is assigned
         if self.id_in_group == 1:
             return 'proposer'
         if self.id_in_group == 2:
