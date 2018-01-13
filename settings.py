@@ -93,6 +93,10 @@ ROOMS = [
         'display_name': 'ffxiv experiment',
         'participant_label_file': '_rooms/ffxiv.txt',
         'use_secure_urls': True
+    },
+    {
+        'name': 'ffxiv_demo',
+        'display_name': 'ffxiv experiment',
     }
 ]
 
@@ -257,6 +261,7 @@ SESSION_CONFIGS = [
         'results_page_timeout': 60,
         'instructions_page_timeout': 480,
         'questions_page_timeout': 480,
+        'num_of_runs': 10,
     },
     {
         'name': 'ultimatum_game_intro',
